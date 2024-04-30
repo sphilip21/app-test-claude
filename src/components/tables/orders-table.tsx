@@ -87,9 +87,9 @@ function AdminControl({ order }: any) {
   }
 
   // Role-based permission
-  if (!currentUser?.realm_access?.roles?.includes('trg-admin')) {
-    return null;
-  }
+  //if (!currentUser?.realm_access?.roles?.includes('trg-admin')) {
+  //  return null;
+  //}
 
   return (<>
     <Button

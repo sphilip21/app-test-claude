@@ -1,10 +1,8 @@
-export interface CurrentUserIF {
-  firstName: string
-  lastName: string
-  email: string
-  token: string | undefined
+//import { User } from "oidc-client-ts";
+
+export interface CurrentUserIF{
+  firstName?: string
+  lastName?: string
+  token: string
   username: string
-  realm_access?: {
-    roles: string[]
-  }
 }
