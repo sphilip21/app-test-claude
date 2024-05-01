@@ -70,7 +70,7 @@ function DetailsControl({order}: any) {
 }
 
 function AdminControl({ order }: any) {
-  const currentUser = useContext(CurrentUserContext);
+  // const currentUser = useContext(CurrentUserContext);
   const [open, setOpen] = React.useState(false);
   const [changes, setChanges] = React.useState(false);
   const [editorContent, setEditorContent] = React.useState(JSON.stringify(order, null, 2));

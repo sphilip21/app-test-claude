@@ -1,12 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { CurrentUserIF } from './interfaces';
 import { AlertsContext, CurrentUserContext } from './contexts';
 import { Orders, Stations } from './pages';
 import { HeaderBar } from './components';
 import { useAuth } from "react-oidc-context";
-import { User } from "oidc-client-ts";
 import './App.scss';
 import Joyride from 'react-joyride';
 import tour from './features/tour';

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import { Typography } from '@mui/material';
-import { red } from '../../utils/colors';
 
 const CLOCK_COLOR = '#2ae9aa';
 

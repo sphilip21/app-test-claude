@@ -10,7 +10,6 @@ import {
 import './header-bar.scss';
 import { CurrentUserContext } from '../../contexts';
 import PrecisionManufacturingTwoToneIcon from '@mui/icons-material/PrecisionManufacturingTwoTone';
-import { red } from '../../utils/colors';
 import UserMenu from '../user-menu/user-menu';
 import Link from '../link/link';
 import Clock from './clock';
