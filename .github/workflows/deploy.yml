@@ -30,32 +30,32 @@ jobs:
   # Builds the React/Typescript app into a distributable build folder.
   #
   ##
-  #build-webapp:
-  #  runs-on: ubuntu-latest
-  #  defaults:
-  #    run:
-  #      shell: bash
-  #      working-directory: .
-  #  steps:
-  #  - uses: actions/checkout@v3
-  #  - name: Use Node.js ${{ env.NODE_VERSION }}
-  #    uses: actions/setup-node@v3
-  #    with:
-  #      node-version: ${{ env.NODE_VERSION }}
-  #      cache: 'npm'
-  #  # Run npm ci
-  #  - name: CI
-  #    run: npm ci
-  #  # Run npm build
-  #  - name: Build
-  #    run: npm run build --if-present
-  #  # Save the build artifacts
-  #  - name: Save build artifacts
-  #    uses: actions/upload-artifact@v2
-  #    with:
-  #      name: build-artifacts
-  #      path: build
-  #      retention-days: 1
+  build-webapp:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: .
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ env.NODE_VERSION }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+    # Run npm ci
+    - name: CI
+      run: npm ci
+    # Run npm build
+    - name: Build
+      run: npm run build --if-present
+    # Save the build artifacts
+    - name: Save build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: build
+        retention-days: 1
 
   ##
   # Deploys the built front-end to S3 and invalidates the
@@ -78,11 +78,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    #- name: Download build artifacts
-    #  uses: actions/download-artifact@v2
-    #  with:
-    #    name: build-artifacts
-    #    path: build
+    - name: Download build artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build-artifacts
+        path: build
 
     - name: Set up Python
       uses: actions/setup-python@v2
