@@ -25,7 +25,7 @@ function App() {
 
   const authSigninRedirect = async () => void auth.signinRedirect();
 
-  const authSignout = async () => void auth.removeUser();
+  // const authSignout = async () => void auth.removeUser();
 
 
   /*useEffect(() => {
@@ -45,7 +45,7 @@ function App() {
         token: `${auth.user?.id_token}`
       });
     }
-  }, [auth.user?.profile.sub])
+  }, [auth.user, auth.isAuthenticated, auth.user?.profile.sub])
 
 
   if (auth.isLoading) {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import { Button, Box, Modal, Typography } from '@mui/material';
 import CondensedOrderItemsTable from './condensed-items-table';
@@ -8,7 +8,7 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-json";
 import "ace-builds/src-noconflict/theme-tomorrow";
-import { CurrentUserContext } from '../../contexts';
+// import { CurrentUserContext } from '../../contexts';
 // import "ace-builds/src-noconflict/ext-language_tools";
 
 interface Props {
