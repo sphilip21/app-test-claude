@@ -35,7 +35,7 @@ export default function HeaderBar() {
       <AppBar position="sticky" className="header-bar">
         <Toolbar>
           <Box className="trg-nav-pages" sx={{ display: { xs: 'none', sm: 'flex' }, mr: 1 }}>
-            <PrecisionManufacturingTwoToneIcon  sx={{ mr: 1, color: red[100] }} />
+            <PrecisionManufacturingTwoToneIcon  sx={{ mr: 1, color: '#dd5e88' }} />
             <Link to="/" sx={{ textDecoration: 'none' }}>
             <Typography
               variant="h6"
@@ -48,12 +48,12 @@ export default function HeaderBar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.01rem',
-                color: red[200],
+                color: '#dd5e88',
                 textDecoration: 'none',
                 display: { xs: 'none', sm: 'none', md: 'inline', lg: 'inline' },
               }}
             >
-              TRG Manufacturing
+              TRG | Manufacturing
             </Typography>
             </Link>
           </Box>

@@ -5,10 +5,9 @@ import logger from './logger';
 const log = logger('manufacturing');
 
 console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
-const useProd = false;
-
+const useProd = true;
 const config = {
-  MFG_API_URL: useProd ? 'https://trg-mfgv2-api.snap.triple.engineering' : 'http://localhost:5000'
+  MFG_API_URL: useProd ? 'https://api.trgsoftware.net' : 'http://localhost:5000'
 }
 
 /**

@@ -29,27 +29,21 @@ function App() {
   const authSignout = async () => void auth.removeUser();
 
 
-  useEffect(() => {
+  /*useEffect(() => {
     console.log(auth.isAuthenticated, auth.isLoading, auth.error)
     if (!auth.isAuthenticated && !auth.isLoading && !auth.error) {
       authSigninRedirect();
     }
-  }, [])
+  }, [])*/
 
   useEffect(() => {
     if (auth.isAuthenticated && auth.user) {
       console.log(auth.user)
-      /*const user: CurrentUserIF = {
-        ...auth.user,
-        firstName: auth.user?.profile?.given_name,
-        lastName: auth.user?.profile?.family_name,
-        username: auth.user?.profile?['cognito:username']
-      };*/
       setCurrentUser({
         firstName: auth.user?.profile?.given_name,
         lastName: auth.user?.profile?.family_name,
         username: `${auth.user?.profile['cognito:username']}`,
-        token: auth.user?.access_token
+        token: `${auth.user?.id_token}`
       });
     }
   }, [auth.user?.profile.sub])
@@ -64,6 +58,7 @@ function App() {
   }
 
   if (!auth.isAuthenticated) {
+    authSigninRedirect();
     return <div>Redirecting to sign in ...</div>;
   }
 

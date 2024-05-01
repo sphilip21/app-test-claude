@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { Typography } from '@mui/material';
 import { red } from '../../utils/colors';
 
+const CLOCK_COLOR = '#2ae9aa';
 
 export default function Clock() {
   const [now, setNow] = useState(dayjs());
@@ -23,7 +24,7 @@ export default function Clock() {
         sx={{
           fontWeight: 600,
           fontSize: '1.1rem',
-          color: red[100],
+          color: CLOCK_COLOR,
           mr: 4,
           paddingTop: 1,
           display: { xs: 'none', sm: 'none', md: 'inline' }
@@ -38,7 +39,7 @@ export default function Clock() {
         sx={{
           fontWeight: 600,
           fontSize: '1.1rem',
-          color: red[100],
+          color: CLOCK_COLOR,
           mr: 4,
           paddingTop: 1,
           display: { xs: 'none', sm: 'inline', md: 'none' }
