@@ -10,7 +10,9 @@ const oidcConfig = {
   authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_bPesfcUZG",
   //authority: "https://trg.auth.us-east-1.amazoncognito.com/trg-software-users",
   client_id: "4rts2aoe8mf0mfgapqcd3i8dc2", // trg-web-ui
-  redirect_uri: "https://trgsoftware.net", // use http://localhost:3000 for local development
+  redirect_uri: window.location.hostname === "localhost" 
+    ? window.location.origin 
+    : "https://trgsoftware.net", // use http://localhost:3000 for local development
   responseType: 'code',
   scope: 'openid profile'
 };

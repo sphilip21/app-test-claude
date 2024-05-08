@@ -11,6 +11,7 @@ import Joyride from 'react-joyride';
 import tour from './features/tour';
 import Alert from './components/alert/alert';
 import { Stack } from '@mui/material';
+import Settings from './pages/settings/settings';
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
             }} />
             <HeaderBar />
             <Routes>
+            <Route path='/settings' element={<Settings />} />
               <Route path='/stations/:step' element={<Stations />} />
               <Route path='/orders' element={<Orders />} />
               <Route path="/*" element={<Navigate to="/stations/preproduction" />} />

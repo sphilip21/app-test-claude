@@ -11,6 +11,74 @@ const config = {
 }
 
 /**
+ * Retrieves global configuration
+ */
+export async function getConfiguration(token: string) {
+  let url = `${config.MFG_API_URL}/configuration`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+  });
+  if (response.status === 200) {
+    const body = await response.json();
+    return body;
+  }
+  // unexpected error
+  const responseText = JSON.stringify(response.text(), null, 4);
+  log.error(`HTTP Error ${response.status}: ${responseText}`);
+  return { status: response.status, error: responseText };
+}
+
+/**
+ * Put a new configuration 
+ */
+export async function putConfiguration(data: any, token: string) {
+  const response = await fetch(`${config.MFG_API_URL}/configuration`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: JSON.stringify(data),
+  });
+  if (response.status !== 200) {
+    const responseText = JSON.stringify(response.text(), null, 4);
+    log.error(`HTTP Error ${response.status}: ${responseText}`);
+    return { status: response.status, error: responseText };
+  }
+  log.info(`PUT Configuration Response: ${JSON.stringify(response, null, 4)}`);
+  const body = response.json();
+  log.info(`PUT Configuration Response Body: ${JSON.stringify(body, null, 4)}`);
+  return body;
+}
+
+/**
+ * Reset configuration 
+ */
+export async function resetConfiguration(token: string) {
+  const response = await fetch(`${config.MFG_API_URL}/configuration/reset`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    },
+    body: '',
+  });
+  if (response.status !== 200) {
+    const responseText = JSON.stringify(response.text(), null, 4);
+    log.error(`HTTP Error ${response.status}: ${responseText}`);
+    return { status: response.status, error: responseText };
+  }
+  log.info(`POST ResetConfiguration Response: ${JSON.stringify(response, null, 4)}`);
+  const body = response.json();
+  return body;
+}
+
+
+/**
  * Retrieves all orders
  */
 export async function getOrders(token: string, station: string | undefined = undefined) {
