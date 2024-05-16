@@ -52,7 +52,7 @@ export default function HeaderBar() {
 
   useEffect(() => {
     loadConfig();
-  }, [loadConfig]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Fragment>

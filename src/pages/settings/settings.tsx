@@ -9,7 +9,7 @@ import { getConfiguration, putConfiguration, resetConfiguration } from '../../se
 
 export default function Settings() {
   const auth = useAuth();
-  const [changes, setChanges] = React.useState(false);
+  const [changes, setChanges] = React.useState(false); // eslint-disable-line no-unused-vars
   const [editorContent, setEditorContent] = React.useState(JSON.stringify({}, null, 2));
 
   const loadConfig = async () => {
@@ -51,7 +51,7 @@ export default function Settings() {
   const resetConfig = async () => {
     if (auth.isAuthenticated && auth.user) {
       const token = `${auth.user?.id_token}`;
-      const config = await resetConfiguration(token);
+      await resetConfiguration(token);
       console.log('Reset config.');
 
       // Refresh page
@@ -64,7 +64,7 @@ export default function Settings() {
 
   useEffect(() => {
     loadConfig();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (
