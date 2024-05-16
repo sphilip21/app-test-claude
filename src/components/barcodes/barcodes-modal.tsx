@@ -35,6 +35,7 @@ export default function BarcodesModal({ data }: any) {
   //         ~= 4.2015
   // 
   const [barcodeSpacing, setBarcodeSpacing] = useState(4.2); 
+  const [barcodeShift, setBarcodeShift] = useState(4.2); 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -44,6 +45,7 @@ export default function BarcodesModal({ data }: any) {
       const config = await getConfiguration(token);
       console.log('Loaded config.');
       setBarcodeSpacing(config.barcodeSpacing);
+      setBarcodeShift(config.barcodeShift);
     }
     else {
       console.log('Cannot load config. Not authenticated.');
@@ -82,7 +84,7 @@ export default function BarcodesModal({ data }: any) {
 
   const barcodeOptions: any = {
     height: 36,
-    width: 1,
+    width: 0.9,
     format: 'CODE39'
   };
 
@@ -96,7 +98,7 @@ export default function BarcodesModal({ data }: any) {
       <Box sx={style}>
         <Box sx={{ textAlign: 'right' }}>
           <Typography variant="body2" style={{display: 'inline', paddingRight: '8px'}}>
-            Using spacing {barcodeSpacing}px{' '}. Adjust spacing in settings.
+            Using spacing={barcodeSpacing}px, shift={barcodeShift}px. Adjust in settings.
           </Typography>
           <ReactToPrint
             content={reactToPrintContent}
@@ -111,23 +113,29 @@ export default function BarcodesModal({ data }: any) {
 
         <Box id="barcodes-content" ref={componentRef} sx={{ 
           paddingLeft: 5, 
-          paddingRight: 5,
+          paddingRight: 10,
           paddingBottom: `${barcodeSpacing}px`, 
-          paddingTop: `${barcodeSpacing}px` }}>
+          paddingTop: `${barcodeShift}px` }}>
           {/*
           <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 3 }}>
             Barcode Tags for { dayjs().format('dddd MMMM D, YYYY') }
           </Typography>
           */}
-          <Grid container spacing={3} rowSpacing={barcodeSpacing}>
+          <Grid container 
+            spacing={3} 
+            rowSpacing={barcodeSpacing}
+            sx={{mt:`${barcodeSpacing * 4}px` }}>
           {data.map((item: any) => (
             <React.Fragment key={item.item.id}>
+              <Grid item xs={2}>
+                <span>-</span>
+              </Grid>
               {/* Left Column */}
               <Grid item xs={5}>
                 <Barcode value={item.formatted} {...barcodeOptions} />
               </Grid>
               {/* Middle Collumn */}
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <Typography variant="body1" style={{display: 'inline', paddingRight: '8px'}}>
                   <strong>Qty. {item.item?.quantity} </strong>
                 </Typography>
@@ -142,7 +150,7 @@ export default function BarcodesModal({ data }: any) {
                 </Typography>
               </Grid>
               {/* Right Collumn */}
-              <Grid item xs={2}>
+              <Grid item xs={1}>
                 <Typography variant="body1" style={{fontWeight: 600}}>
                   {item.order?.code}
                 </Typography>
