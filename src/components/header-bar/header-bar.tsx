@@ -52,7 +52,7 @@ export default function HeaderBar() {
 
   useEffect(() => {
     loadConfig();
-  }, []);
+  }, [loadConfig]);
 
   return (
     <Fragment>
