@@ -32,6 +32,9 @@ export function generateCutLists(selected: any) {
   // console.log('selected: ', selected);
   selected = selected.sort((a: any, b: any) => {
     return (a.material < b.material) ? -1 : 1;
+  })
+  .sort((a: any, b: any) => {
+    return (a.profile < b.profile) ? -1 : 1;
   });
   // console.log('sorted: ', selected);
 
