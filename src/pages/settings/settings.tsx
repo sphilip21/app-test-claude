@@ -9,7 +9,7 @@ import { getConfiguration, putConfiguration, resetConfiguration } from '../../se
 
 export default function Settings() {
   const auth = useAuth();
-  const [changes, setChanges] = React.useState(false); // eslint-disable-line no-unused-vars
+  const [changes, setChanges] = React.useState(false); // eslint-disable-line 
   const [editorContent, setEditorContent] = React.useState(JSON.stringify({}, null, 2));
 
   const loadConfig = async () => {
