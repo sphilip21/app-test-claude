@@ -86,7 +86,15 @@ export default function CutListsModal({ data, onGenerate, onClose }: any) {
 
   return (
     <Modal open={open} handleClose={handleClose}>
-      Use this form to make any additional adjustments to offsets.
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box>
+          Use this form to make any additional adjustments to offsets.
+        </Box>
+        <Box sx={{ textAlign: 'right' }}>
+          <Button variant="outlined" color="error" onClick={handleClose}>Cancel</Button>
+          <Button sx={{ml: 2}}variant="contained" onClick={handleGenerateCutLists}>Generate Cut Lists</Button>
+        </Box>
+      </div>
       <hr />
       <div style={{ maxHeight: '600px', overflow: 'scroll' }}>
         <Grid container>
@@ -156,10 +164,6 @@ export default function CutListsModal({ data, onGenerate, onClose }: any) {
         ))}
         </div>
       <hr />
-      <Box sx={{ textAlign: 'right' }}>
-      <Button variant="outlined" color="error" onClick={handleClose}>Cancel</Button>
-      <Button sx={{ml: 2}}variant="contained" onClick={handleGenerateCutLists}>Generate Cut Lists</Button>
-      </Box>
     </Modal>
   );
 }

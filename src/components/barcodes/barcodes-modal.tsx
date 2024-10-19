@@ -61,6 +61,7 @@ export default function BarcodesModal({ data }: any) {
   }, []);
 
   useEffect(() => {
+    console.log(data)
     if (data.length > 0) {
       handleOpen()
     }
@@ -72,7 +73,7 @@ export default function BarcodesModal({ data }: any) {
 
   const style = {
     position: 'absolute',
-    top: '10%',
+    marginTop: '40px',
     left: '50%',
     transform: 'translate(-50%, 0%)',
     width: '80vw',
@@ -94,6 +95,7 @@ export default function BarcodesModal({ data }: any) {
       onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
+      style={{ maxHeight: '90%', overflow: 'scroll' }}
     >
       <Box sx={style}>
         <Box sx={{ textAlign: 'right' }}>
@@ -115,7 +117,7 @@ export default function BarcodesModal({ data }: any) {
           paddingLeft: 5, 
           paddingRight: 10,
           paddingBottom: `${barcodeSpacing}px`, 
-          paddingTop: `${barcodeShift}px` }}>
+        }}>
           {/*
           <Typography variant="h6" component="h2" sx={{ fontWeight: 600, mb: 3 }}>
             Barcode Tags for { dayjs().format('dddd MMMM D, YYYY') }
