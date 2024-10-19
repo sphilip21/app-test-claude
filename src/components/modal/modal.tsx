@@ -17,13 +17,14 @@ function Modal(props: RowPropsIF) {
 
   const style = {
     position: 'absolute',
-    top: '10%',
+    marginTop: '30px',
     left: '50%',
     transform: 'translate(-50%, 0%)',
     width: '80vw',
     bgcolor: 'background.paper',
     boxShadow: 24,
     borderRadius: '5px',
+    maxHeight: '80%',
     p: 4,
   };
 

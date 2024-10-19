@@ -54,7 +54,7 @@ export default function CutListsModal({ data, onGenerate, onClose }: any) {
   useEffect(() => {
     if (data && data.length > 0) {
       setOpen(true);
-
+      
       // Update profiles
       const result: any = {};
       data.forEach((item: any) => {
@@ -88,71 +88,73 @@ export default function CutListsModal({ data, onGenerate, onClose }: any) {
     <Modal open={open} handleClose={handleClose}>
       Use this form to make any additional adjustments to offsets.
       <hr />
-      <Grid container>
-      {
-        [{
-          label: 'Profile',
-          width: 2
-        }, {
-          label: 'Cut Method',
-          width: 2
-        }, {
-          label: 'D2D Offset (in.)',
-          width: 2,
-          help: 'Offset for D2D cuts only'
-        }, {
-          label: 'Additional Offset (in.)',
-          width: 2,
-          help: 'Additional offset for all cuts'
-        }].map(h => (
-          <Grid key={h.label} item xs={h.width || 1}>
-            <Tooltip title={h.help || h.label} placement='top'>
-              <Typography variant="h6" sx={{fontSize: '1.2rem', fontWeight: '600'}}>
-                {h.label}
-              </Typography>
-            </Tooltip>
-          </Grid>
-      ))}
-      </Grid>
-      {Object.values(profiles).map((i: any) => (
-        <Grid key={i.profile} container>
-          <Grid item xs={2}>
-            <Typography variant="body1">
-              {i.profile} ({i.material})
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography variant="body1">
-              {i.cutMethod === '1' ? 'Saw' : 'Punch'}
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            {i.d2dCutOffset.toFixed(4)}
-          </Grid>
-          {/*
-          <Grid item xs={2}>
-            <TextField
-              sx={{ m: 1, ml: 0 }}
-              name={i.profile}
-              variant='outlined'
-              size="small"
-              type="number"
-              onChange={handleProfileD2DChange}
-            ></TextField>
-          </Grid>
-          */}
-          <Grid item xs={2}>
-            <TextField
-              sx={{ m: 1, ml: 0 }}
-              name={i.profile}
-              variant='outlined'
-              size="small"
-              type="number"
-              onChange={handleProfileChange}
-            ></TextField>
-          </Grid>
+      <div style={{ maxHeight: '600px', overflow: 'scroll' }}>
+        <Grid container>
+        {
+          [{
+            label: 'Profile',
+            width: 2
+          }, {
+            label: 'Cut Method',
+            width: 2
+          }, {
+            label: 'D2D Offset (in.)',
+            width: 2,
+            help: 'Offset for D2D cuts only'
+          }, {
+            label: 'Additional Offset (in.)',
+            width: 2,
+            help: 'Additional offset for all cuts'
+          }].map(h => (
+            <Grid key={h.label} item xs={h.width || 1}>
+              <Tooltip title={h.help || h.label} placement='top'>
+                <Typography variant="h6" sx={{fontSize: '1.2rem', fontWeight: '600'}}>
+                  {h.label}
+                </Typography>
+              </Tooltip>
+            </Grid>
+        ))}
         </Grid>
-      ))}
+        {Object.values(profiles).map((i: any) => (
+          <Grid key={i.profile} container>
+            <Grid item xs={2}>
+              <Typography variant="body1">
+                {i.profile} ({i.material})
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              <Typography variant="body1">
+                {i.cutMethod === '1' ? 'Saw' : 'Punch'}
+              </Typography>
+            </Grid>
+            <Grid item xs={2}>
+              {i.d2dCutOffset.toFixed(4)}
+            </Grid>
+            {/*
+            <Grid item xs={2}>
+              <TextField
+                sx={{ m: 1, ml: 0 }}
+                name={i.profile}
+                variant='outlined'
+                size="small"
+                type="number"
+                onChange={handleProfileD2DChange}
+              ></TextField>
+            </Grid>
+            */}
+            <Grid item xs={2}>
+              <TextField
+                sx={{ m: 1, ml: 0 }}
+                name={i.profile}
+                variant='outlined'
+                size="small"
+                type="number"
+                onChange={handleProfileChange}
+              ></TextField>
+            </Grid>
+          </Grid>
+        ))}
+        </div>
       <hr />
       <Box sx={{ textAlign: 'right' }}>
       <Button variant="outlined" color="error" onClick={handleClose}>Cancel</Button>
