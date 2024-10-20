@@ -5,42 +5,14 @@ export function generateBarcodes(selected: any) {
   const barcodes = selected
     .filter((item: any) => item.material.startsWith('20-') || item.material.startsWith('15-'))
     .sort((a: any, b: any) => {
-      if (a.workflow.cutMethod > b.workflow.cutMethod) {
+      if (a.profile > b.profile) {
         return -1;
-      } else if (a.workflow.cutMethod < b.workflow.cutMethod) {
+      } else if (a.profile < b.profile) {
         return 1;
       } else {
         return 0;
       }
     })
-    // .sort((a: any, b: any) => {
-    //   console.log('sort', a, b)
-    //   if (a.workflow.cutMethod < b.workflow.cutMethod) {
-    //     return -1;
-    //   } else if (a.workflow.cutMethod < b.workflow.cutMethod) {
-    //       return 1;
-    //   } else {
-    //       if (a.profile < b.profile) {
-    //           return -1;
-    //       } else if (a.profile > b.profile) {
-    //           return 1;
-    //       } else {
-    //         if (a.order.code < b.order.code) {
-    //           return -1;
-    //         } else if (a.order.code > b.order.code) {
-    //             return 1;
-    //         } else {
-    //           if (a.id < b.id) {
-    //             return -1;
-    //           } else if (a.id > b.id) {
-    //               return 1;
-    //           } else {
-    //               return 0;
-    //           }
-    //         }
-    //       }
-    //     }
-    // })
     .map((item: any) => ({
       profile: item.profile,
       magMchNo: item.workflow.magMchNo,

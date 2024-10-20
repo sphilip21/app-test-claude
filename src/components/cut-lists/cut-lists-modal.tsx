@@ -57,7 +57,15 @@ export default function CutListsModal({ data, onGenerate, onClose }: any) {
       
       // Update profiles
       const result: any = {};
-      data.forEach((item: any) => {
+      data.sort((a:any, b:any) => {
+        if (a.profile > b.profile) {
+          return -1;
+        } else if (a.profile < b.profile) {
+          return 1;
+        } else {
+          return 0;
+        }
+      }).forEach((item: any) => {
         if (!result[item.profile]) {
           result[item.profile] = {
             profile: item.profile,
