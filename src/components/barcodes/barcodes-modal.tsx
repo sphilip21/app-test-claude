@@ -61,7 +61,6 @@ export default function BarcodesModal({ data }: any) {
   }, []);
 
   useEffect(() => {
-    console.log(data)
     if (data.length > 0) {
       handleOpen()
     }
