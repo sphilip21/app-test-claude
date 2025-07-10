@@ -18,6 +18,7 @@ import { useAuth } from 'react-oidc-context';
 
 const pages = [
   {name: 'All Orders', href: '/orders'},
+  {name: 'Order Entry', href: '/order-entry'},
   {name: 'Stations', href: '/stations'},
   {name: 'Settings', href: '/settings'},
 ];

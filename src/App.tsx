@@ -12,6 +12,7 @@ import tour from './features/tour';
 import Alert from './components/alert/alert';
 import { Stack } from '@mui/material';
 import Settings from './pages/settings/settings';
+import OrderEntry from './components/order-entry/order-entry';
 
 
 function App() {
@@ -80,7 +81,8 @@ function App() {
             }} />
             <HeaderBar />
             <Routes>
-            <Route path='/settings' element={<Settings />} />
+              <Route path='/settings' element={<Settings />} />
+              <Route path='/order-entry' element={<OrderEntry />} />
               <Route path='/stations/:step' element={<Stations />} />
               <Route path='/orders' element={<Orders />} />
               <Route path="/*" element={<Navigate to="/stations/preproduction" />} />

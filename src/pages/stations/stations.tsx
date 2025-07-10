@@ -1,6 +1,5 @@
-
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   Breadcrumbs,
   Box,
@@ -31,11 +30,13 @@ import StartIcon from '@mui/icons-material/Start';
 import BarcodesModal from '../../components/barcodes/barcodes-modal';
 import ReleaseModal from '../../components/release-modal/release-modal';
 import CutListsModal from '../../components/cut-lists/cut-lists-modal';
+import AddOrderQuoteModal from '../../components/order-entry/AddOrderQuoteModal';
 import { getMockOrder } from '../../utils/mock-data';
 
 
 function Stations() {
   const { step } = useParams();
+  const navigate = useNavigate();
   const currentUser = useContext(CurrentUserContext);
   const [data, setData] = useState<StationsDataIF[] | null>(null)
   const [barcodesData, setBarcodesData] = useState<any[]>([])
@@ -43,6 +44,7 @@ function Stations() {
   const [selected, setSelected] = useState<any[]>([]); // the currently selected table items
   const [selectedReleaseItem, setSelectedReleaseItem] = useState<any>();
   const [selectedCutItems, setSelectedCutItems] = useState<any>();
+  const [showAddOrderModal, setShowAddOrderModal] = useState<boolean>(false);
 
   const fetchData = useCallback(async () => {
     if (currentUser?.token) {
@@ -84,6 +86,21 @@ function Stations() {
       });
     }
     return selectedItems;
+  };
+
+  const handleCreateOrder = (orderData: any) => {
+    console.log('Creating order/quote with data:', orderData);
+    
+    // Navigate to order entry page with customer data
+    navigate('/order-entry', { 
+      state: { 
+        customerName: orderData.parent,
+        orderType: orderData.type,
+        job: orderData.job,
+        subJob: orderData.subJob,
+        referenceNumber: orderData.referenceNumber
+      } 
+    });
   };
 
   useEffect(() => {
@@ -188,16 +205,12 @@ function Stations() {
     });
   }
 
-  if (step === 'preproduction' && ['luke', 'josh', 'leah'].includes(`${currentUser?.username}`)) {
+  if (step === 'preproduction' && ['sphilip21@gmail.com', 'josh', 'leah'].includes(`${currentUser?.username}`)) {
     actions.push({
       icon: <CodeIcon />,
       name: 'DEV Create Order',
       handler: () => {
-        // do put request to create test order
-        if (currentUser?.token) {
-          const mockOrder = getMockOrder();
-          putOrder(mockOrder, currentUser?.token);
-        }
+        setShowAddOrderModal(true);
       }
     });
   }
@@ -229,6 +242,11 @@ function Stations() {
         station={step}
         onClose={() => setSelectedReleaseItem(undefined)}
         onReleaseComplete={fetchData}
+      />
+      <AddOrderQuoteModal
+        open={showAddOrderModal}
+        onClose={() => setShowAddOrderModal(false)}
+        onCreate={handleCreateOrder}
       />
     </div>
   );
